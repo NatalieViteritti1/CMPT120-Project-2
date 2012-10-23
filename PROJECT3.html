@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<!-- Natalie Viteritti
+               Adventure Game Take 2
+               Project 3 -->
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Race to the Top</title>
+    <style>
+        body {background-color:red; }
+        .heading {font-weight:bold; }
+        .title {font-size:46pts; font-family:papyrus; color:white; font-weight:bold}
+    </style>
+    <script type="text/Javascript">
+        var NORTH= 1;
+        var SOUTH= 2;
+        var EAST= 3;
+        var WEST= 4;
+        var currentLocation= 0;
+       
+        function showscore () {
+               alert (score);
+        }
+        function move (direction){
+            if (direction===NORTH){
+              if (currentLocation== 5){
+                  currentLocation=3;
+                  updateDisplay("You are near the lake.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = true;
+                  document.getElementById("btnWest").disabled = true;
+              }else if (currentLocation==3){
+                  currentLocation=0;
+                  updateDisplay("You are in the center of the forest.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = false;
+              }else if (currentLocation==0){
+                   currentLocation=1;
+                   updateDisplay("You have found the cave.");
+                   document.getElementById("btnNorth").disabled = true;
+                   document.getElementById("btnSouth").disabled = false;
+                   document.getElementById("btnEast").disabled = true;
+                   document.getElementById("btnWest").disabled = true;
+              }
+                updateDisplay("moving north");
+            }else if (direction===SOUTH){
+                if (currentLocation== 1){
+                  currentLocation=0;
+                  updateDisplay("You are in the center of the forest.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = false;
+              }else if (currentLocation==0){
+                  currentLocation=3;
+                  updateDisplay("You are near the lake.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = true;
+                  document.getElementById("btnWest").disabled = true;
+              }else if (currentLocation==3){
+                   currentLocation=5;
+                   updateDisplay("You swam across the lake and reached the tallest tree in the forest.");
+                   document.getElementById("btnNorth").disabled = false;
+                   document.getElementById("btnSouth").disabled = true;
+                   document.getElementById("btnEast").disabled = true;
+                   document.getElementById("btnWest").disabled = true;
+              }
+                updateDisplay("moving south");
+            }else if (direction===EAST){
+                if (currentLocation== 4){
+                  currentLocation=0;
+                  updateDisplay("You are in the center of the forest.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = false;
+                  
+              }else if (currentLocation==0){
+                  currentLocation=2;
+                  updateDisplay("You have found the first clue behind the heart-shaped rock.");
+                  document.getElementById("btnNorth").disabled = true;
+                  document.getElementById("btnSouth").disabled = true;
+                  document.getElementById("btnEast").disabled = true;
+                  document.getElementById("btnWest").disabled = false;
+              }
+                updateDisplay("moving east");
+            }else if (direction===WEST){
+                if (currentLocation== 2){
+                  currentLocation=0;
+                  updateDisplay("You are in the center of the forest.");
+                  document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = false;
+              }else if (currentLocation==0){
+                  currentLocation=4;
+                  updateDisplay("You are now on the beach.");
+                  document.getElementById("btnNorth").disabled = true;
+                  document.getElementById("btnSouth").disabled = true;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = true;
+              }
+                updateDisplay("moving west")
+            }
+         }
+         
+         function updateDisplay (msg){
+           msg= msg + "[" + currentLocation + "]";
+           var ta= document.getElementById ("taGame");
+           ta.value= msg + " \n" + ta.value;
+         }
+         
+         function btn_go_click (){
+            var userInput = document.getElementById("txtInput").value;
+           
+            if (userInput === "n" || userInput === "N") {
+               move(NORTH); 
+            } else if (userInput === "s" || userInput === "S") {
+               move(SOUTH); 
+            } else if (userInput === "e" || userInput === "E") {
+               move(EAST); 
+            } else if (userInput === "w" || userInput === "W") {
+               move(WEST); 
+            } else {
+               updateDisplay("Invalid Command. Valid commands are 'n,s,e,w,N,S,E,W.'");
+            }
+         }
+     </script>
+   </head>
+   <body>
+      <p class="title">
+          RACE TO THE TOP!!!
+        <br>
+      </p>
+      <p class="heading">
+          Welcome to My Text-Adventure Game...Play if you Dare!
+      </p>
+      <br>
+      <textarea id= "taGame" rows="10" cols="40">"You are in the middle of a forest. You are competing against other players to find the buried treasure that is hidden somewhere deep into the forest. In order to find it, you need to find three clues."</textarea>
+      <br>
+      <input type="text" id="txtInput">
+     
+      <input value="Go" onclick="btn_go_click();" type="button">
+      <br>
+      <input value="NORTH" onclick="move(NORTH);" type="button" id="btnNorth">
+      <input value="SOUTH" onclick="move(SOUTH);" type="button" id="btnSouth">
+      <input value="EAST" onclick="move(EAST);" type="button" id="btnEast">
+      <input value="WEST" onclick="move(WEST);" type="button" id="btnWest">
+      <p>
+        <a href="mailto:Natalie.Viteritti1@marist.edu">E-Mail Link</a>
+      </p>
+   
+ 
+   </body>
+</html>
