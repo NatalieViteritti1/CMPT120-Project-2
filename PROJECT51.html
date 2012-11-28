@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!-- Natalie Viteritti
+               Adventure Game Take 4
+               Project 5 -->
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Race to the Top</title>
+    <style>
+        body {background-color:red; }
+        .heading {font-weight:bold; }
+        .title {font-size:46pts; font-family:papyrus; color:white; font-weight:bold}
+    </style>
+    <img src= "compscigamemap.png" name="Picture1" title="Game Map" alt="compscigamemap.png"/>
+    <script type="text/Javascript" src="navigation5a.js"></script>
+    <script type="text/Javascript" src="game5a.js"></script>
+    <script type="text/Javascript" src="locale5amaybe.js"></script>
+    <script type="text/Javascript" src="itemproj5.js"></script>
+
+    <script type="text/Javascript">   
+         function updateDisplay (msg){
+           msg= msg + "[" + currentLocale + "]";
+           var ta= document.getElementById ("taGame");
+           ta.value= msg + " \n" + ta.value;
+         }
+         
+         function btn_go_click (){
+            var userInput = document.getElementById("txtInput").value;
+           
+            if (userInput === "n" || userInput === "N") {
+               move(NORTH); 
+            } else if (userInput === "s" || userInput === "S") {
+               move(SOUTH); 
+            } else if (userInput === "e" || userInput === "E") {
+               move(EAST); 
+            } else if (userInput === "w" || userInput === "W") {
+               move(WEST); 
+            } else {
+               updateDisplay("Invalid Command. Valid commands are 'n,s,e,w,N,S,E,W.'");
+            }
+         }
+     </script>
+   </head>
+   <body onload="init();">
+      <p class="title">
+          RACE TO THE TOP!!!
+        <br>
+      </p>
+      <p class="heading">
+          Welcome to My Text-Adventure Game...Play if you Dare!
+      </p>
+      <br>
+      <textarea id= "taGame" rows="10" cols="40"></textarea>
+      <br>
+      <input type="text" id="txtInput">
+     
+      <input value="Go" onclick="btn_go_click();" type="button">
+      <br>
+      <input value="NORTH" onclick="move(NORTH);" type="button" id="btnNorth">
+      <input value="SOUTH" onclick="move(SOUTH);" type="button" id="btnSouth">
+      <input value="EAST" onclick="move(EAST);" type="button" id="btnEast">
+      <input value="WEST" onclick="move(WEST);" type="button" id="btnWest">
+      <input value="Inventory" onclick="displayInventory();" type="button">
+      <input value="Help" onclick="help();" type="button">
+      <input value="Take" onclick="take();" type="button">
+      
+      <p>
+        <a href="mailto:Natalie.Viteritti1@marist.edu">E-Mail Link</a>
+      </p>
+   
+ 
+   </body>
+</html>
